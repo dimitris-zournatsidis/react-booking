@@ -1,0 +1,16 @@
+.main_header_container {
+    /* background-color: pink; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 2.5rem;
+}
+
+.plus_icon {
+    font-size: 1.7rem;
+}
+
+.back_icon {
+    font-size: 1.7rem;
+}
