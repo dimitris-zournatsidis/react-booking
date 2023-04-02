@@ -61,7 +61,7 @@ export default function Book() {
 
       // Navigate to Home page and reset all fields
       navigate('/');
-      //resetFields();
+      resetFields();
     }
   }
 
