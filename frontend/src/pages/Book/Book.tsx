@@ -12,8 +12,8 @@ export default function Book() {
   const id = uuidv4();
   const navigate = useNavigate();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [value, onChange] = useState<any>(new Date());
+  const [email, setEmail] = useState('dimitris@example.com');
+  const [value, onChange] = useState<any>([]);
 
   function isEmailValid(val: string) {
     let regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
@@ -26,6 +26,7 @@ export default function Book() {
 
   useEffect(() => {
     console.log('date!!!', dayjs(value).format('DD-MM-YYYY'));
+    console.log('dateValue', value.length);
   });
 
   function handleAdd() {
@@ -36,7 +37,7 @@ export default function Book() {
       toast.warn('Please enter an email');
     } else if (!isEmailValid(email)) {
       toast.error('Enter a valid email');
-    } else if (!value) {
+    } else if (value.length === 0) {
       toast.warn('Please select date(s)');
     } else {
       // Create the booking object
@@ -100,13 +101,17 @@ export default function Book() {
         <Calendar
           onChange={onChange}
           value={value}
+          minDate={new Date()}
           //activeStartDate={undefined}
-          //selectRange={true}
+          selectRange={true}
+          allowPartialRange={true}
         />
       </div>
 
-      <div className='reset_calendar' onClick={() => onChange([])}>
-        Reset Calendar
+      <div className='reset_calendar_container'>
+        <span className='reset_calendar' onClick={() => onChange([])}>
+          Reset Calendar
+        </span>
       </div>
 
       <div className='nights_container'>
