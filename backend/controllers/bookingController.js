@@ -19,12 +19,24 @@ const setBooking = asyncHandler(async (req, res) => {
     throw new Error('Please add your email');
   }
 
+  if (!req.body.checkIn) {
+    res.status(400);
+    throw new Error('Please add check-in');
+  }
+
+  if (!req.body.checkOut) {
+    res.status(400);
+    throw new Error('Please add check-out');
+  }
+
   const booking = await Booking.create({
     name: req.body.name,
     email: req.body.email,
+    checkIn: req.body.checkIn,
+    checkOut: req.body.checkOut,
   });
 
-  res.status(200).json(booking);
+  res.status(201).json(booking);
 });
 
 // UPDATE /api/bookings/:id
