@@ -12,7 +12,7 @@ export default function Book() {
   const id = uuidv4();
   const navigate = useNavigate();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('dimitris@example.com');
+  const [email, setEmail] = useState('');
   const [value, onChange] = useState<any>([]);
 
   function isEmailValid(val: string) {
@@ -25,8 +25,8 @@ export default function Book() {
   }
 
   useEffect(() => {
-    console.log('date!!!', dayjs(value).format('DD-MM-YYYY'));
-    console.log('dateValue', value.length);
+    // console.log('date!!!', dayjs(value).format('DD-MM-YYYY'));
+    // console.log('dateValue', value.length);
   });
 
   function handleAdd() {
@@ -97,7 +97,7 @@ export default function Book() {
         </div>
       </div>
 
-      <div className='calendar_container'>
+      <div>
         <Calendar
           onChange={onChange}
           value={value}
