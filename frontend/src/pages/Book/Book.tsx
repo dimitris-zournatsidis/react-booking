@@ -61,7 +61,7 @@ export default function Book() {
 
       // Navigate to Home page and reset all fields
       navigate('/');
-      resetFields();
+      //resetFields();
     }
   }
 
@@ -105,6 +105,7 @@ export default function Book() {
           //activeStartDate={undefined}
           selectRange={true}
           allowPartialRange={true}
+          //returnValue={'range'}
         />
       </div>
 
