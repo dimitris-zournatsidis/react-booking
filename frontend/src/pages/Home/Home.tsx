@@ -2,39 +2,42 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import './Home.css';
 import ReservationItem from '../../components/ReservationItem/ReservationItem';
+import { toast } from 'react-toastify';
 
 export default function Home() {
-  const [items, setItems] = useState<[]>([]);
+  const [items, setItems] = useState<any[]>([]);
 
   useEffect(() => {
     const bookInfo = JSON.parse(localStorage.getItem('book-info') || '[]');
-    //console.log('booki info!!!!!', bookInfo);
     if (bookInfo) {
       setItems(bookInfo);
     }
-  },[]);
-
-  //console.log('items in home', items);
+  }, []);
 
   function handleDelete(id: string) {
-    //items.filter(item => item.id != id)
+    const itemsAfterDelete = items.filter((item) => item.id !== id);
+    setItems(itemsAfterDelete);
+    localStorage.setItem('book-info', JSON.stringify(itemsAfterDelete));
+    toast.warn(`Reservation is deleted`);
   }
-  
 
   return (
     <div className='home_page_container'>
       <Header />
 
-      {items.map((item) => {
-        console.log('ena item', item);
-        return (
-          <ReservationItem
-            key={item}
-            item={item} 
-            onDelete={() => handleDelete(item)} // TODO !!!!!!!!!
-          />
-        )
-      })}
+      {items && items.length === 0 ? (
+        <div className='no_reservations_label'>No reservations found</div>
+      ) : (
+        items.map((item) => {
+          return (
+            <ReservationItem
+              key={item.id}
+              item={item}
+              onDelete={() => handleDelete(item.id)}
+            />
+          );
+        })
+      )}
     </div>
   );
 }

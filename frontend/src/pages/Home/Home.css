@@ -1,4 +1,10 @@
 .home_page_container {
-    border: 1px solid red;
     margin: 0 1rem;
+}
+
+.no_reservations_label {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 15rem;
+    color: gray;
 }

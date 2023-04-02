@@ -11,6 +11,7 @@ export default function Header() {
     <>
       {/* eslint-disable-next-line no-restricted-globals */}
       {location.pathname.includes('book') ? (
+        // Header for Book page
         <div className='main_header_container'>
         <IoIosArrowBack
           className='back_icon'
@@ -19,6 +20,7 @@ export default function Header() {
           <h1>Add Reservation</h1>
         </div>
       ) : (
+        // Header for Home page
         <div className='main_header_container'>
           <h1>Reservations</h1>
           <AiOutlinePlusCircle

@@ -1,10 +1,8 @@
 .book_page_container {
-  border: 1px solid red;
   margin: 0 1rem;
 }
 
 .inputs_container {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -25,12 +23,21 @@
 }
 
 .calendar_container {
-  background-color: pink;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
+}
+
+.reset_calendar {
+  margin: 2rem 0 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: red;
+}
+
+.nights_container {
+
 }
 
 .buttons_container {
-  /* border: 1px solid green; */
   margin-top: 3rem;
   display: flex;
   justify-content: center;

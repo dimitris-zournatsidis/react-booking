@@ -6,26 +6,30 @@ import 'react-calendar/dist/Calendar.css';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
+import dayjs from 'dayjs';
 
 export default function Book() {
   const id = uuidv4();
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [numOfNights, setNumOfNights] = useState<number>();
   const [value, onChange] = useState<any>(new Date());
 
   function isEmailValid(val: string) {
     let regEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-    if (!regEmail.test(val)){
+    if (!regEmail.test(val)) {
       return false;
     } else {
       return true;
     }
   }
 
+  useEffect(() => {
+    console.log('date!!!', dayjs(value).format('DD-MM-YYYY'));
+  });
+
   function handleAdd() {
-    // console.log('add clicked');
+    // Validate users' inputs
     if (!name) {
       toast.warn('Please enter your name');
     } else if (!email) {
@@ -35,13 +39,15 @@ export default function Book() {
     } else if (!value) {
       toast.warn('Please select date(s)');
     } else {
+      // Create the booking object
       let bookObj = {
         id: id,
         name: name,
         email: email,
-        date: value,
+        date: dayjs(value).format('DD-MM-YYYY'),
       };
 
+      // Store that booking object to localStorage
       let bookInfoArr = [];
       if (!localStorage.getItem('book-info')) {
         bookInfoArr.push(bookObj);
@@ -52,6 +58,7 @@ export default function Book() {
         localStorage.setItem('book-info', JSON.stringify(bookInfoArr));
       }
 
+      // Navigate to Home page and reset all fields
       navigate('/');
       resetFields();
     }
@@ -62,8 +69,6 @@ export default function Book() {
     setEmail('');
     onChange([]);
   }
-
-  useEffect(() => {});
 
   return (
     <div className='book_page_container'>
@@ -92,17 +97,20 @@ export default function Book() {
       </div>
 
       <div className='calendar_container'>
-        <Calendar onChange={onChange} value={value} />
+        <Calendar
+          onChange={onChange}
+          value={value}
+          //activeStartDate={undefined}
+          //selectRange={true}
+        />
       </div>
 
-      <div className='input_field_container'>
-        <label>Nights:</label>
-        <input
-          type='number'
-          value={numOfNights}
-          className='input_field'
-          onChange={(e) => setNumOfNights(+e.target.value)}
-        />
+      <div className='reset_calendar' onClick={() => onChange([])}>
+        Reset Calendar
+      </div>
+
+      <div className='nights_container'>
+        <label>Nights: {value.length}</label>
       </div>
 
       <div className='buttons_container'>
