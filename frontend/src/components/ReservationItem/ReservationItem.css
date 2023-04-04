@@ -1,5 +1,4 @@
 .reservation_item_container {
-    /* background-color: cyan; */
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -9,6 +9,7 @@ const bookingSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     checkIn: {
       type: String,

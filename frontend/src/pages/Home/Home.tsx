@@ -16,31 +16,19 @@ export interface IBook {
 const API_BOOKING_URL = 'http://localhost:5000/api/bookings';
 
 export default function Home() {
-  const [items, setItems] = useState<IBook[]>([]);
+  const [bookings, setBookings] = useState<IBook[]>([]);
   const [crudAction, setCrudAction] = useState(false);
 
   useEffect(() => {
-    // const bookInfo = JSON.parse(localStorage.getItem('book-info') || '[]');
-    // if (bookInfo) {
-    //   setItems(bookInfo);
-    // }
-
     axios.get(API_BOOKING_URL).then((res) => {
-      console.log('res!!!', res);
-
-      setItems(res.data);
+      setBookings(res.data);
     });
     setCrudAction(false);
   }, [crudAction]);
 
-  function handleDelete(id: string) {
-    // const itemsAfterDelete = items.filter((item) => item.id !== id);
-    // setItems(itemsAfterDelete);
-    // localStorage.setItem('book-info', JSON.stringify(itemsAfterDelete));
-    // toast.warn(`Reservation is deleted`);
-
-    if (window.confirm('Are you sure you want to delete this booking?')) {
-      axios.delete(API_BOOKING_URL + `/${id}`).then(() => {
+  function handleDelete(booking: IBook) {
+    if (window.confirm(`Are you sure you want to delete the booking by ${booking.name}?`)) {
+      axios.delete(API_BOOKING_URL + `/${booking._id}`).then(() => {
         setCrudAction(true);
         toast.warn(`Reservation is deleted`);
       });
@@ -51,18 +39,11 @@ export default function Home() {
     <div className='home_page_container'>
       <Header />
 
-      {items && items.length === 0 ? (
+      {bookings.length === 0 ? (
         <div className='no_reservations_label'>No reservations found</div>
       ) : (
-        items &&
-        items.map((item) => {
-          return (
-            <ReservationItem
-              key={item._id}
-              item={item}
-              onDelete={() => handleDelete(item._id)}
-            />
-          );
+        bookings.map((booking) => {
+          return <ReservationItem key={booking._id} booking={booking} onDelete={() => handleDelete(booking)} />;
         })
       )}
     </div>

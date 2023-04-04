@@ -55,14 +55,14 @@
 }
 
 .add_button {
-    background-color: green;
-    color: white;
-    height: 2rem;
-    width: 5rem;
-    font-size: 1.1rem;
-    border-radius: 0.3rem;
-    border: none;
-    box-shadow: 2px 2px 5px 0px rgb(77, 115, 138);
+  background-color: green;
+  color: white;
+  height: 2rem;
+  width: 5rem;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: none;
+  box-shadow: 2px 2px 5px 0px rgb(77, 115, 138);
 }
 
 .add_button:active {
@@ -71,14 +71,14 @@
 }
 
 .cancel_button {
-    background-color: red;
-    color: white;
-    height: 2rem;
-    width: 5rem;
-    font-size: 1.1rem;
-    border-radius: 0.3rem;
-    border: none;
-    box-shadow: 2px 2px 5px 0px rgb(115, 77, 138);
+  background-color: red;
+  color: white;
+  height: 2rem;
+  width: 5rem;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: none;
+  box-shadow: 2px 2px 5px 0px rgb(115, 77, 138);
 }
 
 .cancel_button:active {

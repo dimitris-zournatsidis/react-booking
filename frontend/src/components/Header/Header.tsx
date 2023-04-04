@@ -13,20 +13,14 @@ export default function Header() {
       {location.pathname.includes('book') ? (
         // Header for Book page
         <div className='main_header_container'>
-        <IoIosArrowBack
-          className='back_icon'
-          onClick={() => navigate('/')}
-        />
+          <IoIosArrowBack className='back_icon' onClick={() => navigate('/')} />
           <h1>Add Reservation</h1>
         </div>
       ) : (
         // Header for Home page
         <div className='main_header_container'>
           <h1>Reservations</h1>
-          <AiOutlinePlusCircle
-            className='plus_icon'
-            onClick={() => navigate('./book')}
-          />
+          <AiOutlinePlusCircle className='plus_icon' onClick={() => navigate('./book')} />
         </div>
       )}
     </>
