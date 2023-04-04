@@ -1,6 +1,6 @@
-# Currency Calculator
+# Booking Application
 
-A currency calculator using MERN Stack (MongoDB, Express, React, Node.js).
+A booking application using MERN Stack (MongoDB, Express, React, Node.js).
 
 ## Prerequisites
 * [Node.js](https://nodejs.org/en/)
